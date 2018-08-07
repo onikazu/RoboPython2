@@ -27,7 +27,7 @@ class Player1(threading.Thread):
     def receive(self):
         message, arr = self.socket.recvfrom(4096)
         message = message.decode("UTF-8")
-        self.PORT = self.socket.getsockname()[1]
+        self.PORT = arr[1]
         print("arr: ", arr)
 
         # print("No. ", self.m_iNumber, "PORT: ", self.PORT)

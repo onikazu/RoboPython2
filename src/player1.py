@@ -27,6 +27,7 @@ class Player1(threading.Thread):
     def receive(self):
         message, arr = self.socket.recvfrom(4096)
         message = message.decode("UTF-8")
+        self.PORT = self.socket.getsockname()[1]
         # print("メッセージ（サーバーから", self.m_iNumber, "番）：", message)
         return message
 
@@ -35,9 +36,9 @@ class Player1(threading.Thread):
         self.m_strTeamName = team_name
         self.m_strHostName = server_name
         if self.m_iNumber == 1:
-            command = "(init " + self.m_strTeamName + "(goalie))"
+            command = "(init " + self.m_strTeamName + "(goalie)(version 15.40))"
         else:
-            command = "(init " + self.m_strTeamName + ")"
+            command = "(init " + self.m_strTeamName + "(version 15.40))"
         self.send(command)
 
     # thread を動かしている最中に行われる関数

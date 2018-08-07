@@ -28,7 +28,7 @@ class Player1(threading.Thread):
         message, arr = self.socket.recvfrom(4096)
         message = message.decode("UTF-8")
         self.PORT = self.socket.getsockname()[1]
-        print("PORT: ", self.PORT)
+        print("No. ", self.m_iNumber, "PORT: ", self.PORT)
         # print("メッセージ（サーバーから", self.m_iNumber, "番）：", message)
         return message
 
@@ -36,6 +36,7 @@ class Player1(threading.Thread):
         self.m_iNumber = number
         self.m_strTeamName = team_name
         self.m_strHostName = server_name
+        self.PORT = server_port
         if self.m_iNumber == 1:
             command = "(init " + self.m_strTeamName + "(goalie)(version 15.40))"
         else:
